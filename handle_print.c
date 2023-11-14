@@ -19,7 +19,7 @@ int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
 {
     int i, unknown_len = 0, printed_chars = -1;
 
-    // Array of format specifiers and corresponding functions
+    /* Array of format specifiers and corresponding functions */
     fmt_t fmt_types[] = {
         {'c', print_char}, {'s', print_string}, {'%', print_percent},
         {'i', print_int}, {'d', print_int}, {'b', print_binary},
@@ -28,36 +28,36 @@ int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
         {'r', print_reverse}, {'R', print_rot13string}, {'\0', NULL}
     };
 
-    // Loop through the format specifiers and find a match
+    /* Loop through the format specifiers and find a match */
     for (i = 0; fmt_types[i].fmt != '\0'; i++)
     {
         if (fmt[*ind] == fmt_types[i].fmt)
         {
-            // Call the corresponding print function and return its result
+            /* Call the corresponding print function and return its result */
             return fmt_types[i].fn(list, buffer, flags, width, precision, size);
         }
     }
 
-    // If no match is found
+    /* If no match is found */
     if (fmt_types[i].fmt == '\0')
     {
         if (fmt[*ind] == '\0')
         {
-            // End of format string, return -1 as an error
+            /* End of format string, return -1 as an error */
             return -1;
         }
 
-        // Handle the case where the specifier is '%%'
+        /* Handle the case where the specifier is '%%' */
         unknown_len += write(1, "%%", 1);
 
         if (fmt[*ind - 1] == ' ')
         {
-            // If there was a space before '%%', add a space
+            /* If there was a space before '%%', add a space */
             unknown_len += write(1, " ", 1);
         }
         else if (width)
         {
-            // Handle width specification by adjusting the index
+            /* Handle width specification by adjusting the index */
             --(*ind);
             while (fmt[*ind] != ' ' && fmt[*ind] != '%')
                 --(*ind);
@@ -65,15 +65,15 @@ int handle_print(const char *fmt, int *ind, va_list list, char buffer[],
             if (fmt[*ind] == ' ')
                 --(*ind);
 
-            // Return 1 to indicate one character was printed
+            /* Return 1 to indicate one character was printed */
             return 1;
         }
 
-        // Write the character directly to stdout
+        /* Write the character directly to stdout */
         unknown_len += write(1, &fmt[*ind], 1);
         return unknown_len;
     }
 
-    // Return the total number of printed characters
+    /* Return the total number of printed characters */
     return printed_chars;
 }

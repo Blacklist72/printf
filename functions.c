@@ -34,10 +34,12 @@ int print_char(va_list types, char buffer[],
 int print_string(va_list types, char buffer[],
     int flags, int width, int precision, int size)
 {
-    char *str = va_arg(types, char *);
+    
     int length = 0, i;
-
+    char *str = va_arg(types, char *);
+    
     UNUSED(flags);
+    UNUSED(buffer);
     UNUSED(width);
     UNUSED(precision);
     UNUSED(size);
@@ -165,6 +167,7 @@ int print_binary(va_list types, char buffer[],
     int count;
 
     UNUSED(flags);
+    UNUSED(buffer);
     UNUSED(width);
     UNUSED(precision);
     UNUSED(size);

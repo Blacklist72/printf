@@ -17,25 +17,25 @@ int get_width(const char *format, int *i, va_list list)
     {
         if (is_digit(format[curr_i]))
         {
-            // Update the width based on the digits in the format string
+            /* Update the width based on the digits in the format string */
             width *= 10;
             width += format[curr_i] - '0';
         }
         else if (format[curr_i] == '*')
         {
-            // Handle the case where width is specified as an argument
+            /* Handle the case where width is specified as an argument */
             curr_i++;
             width = va_arg(list, int);
             break;
         }
         else
         {
-            // Exit the loop if a non-digit or '*' is encountered
+            /* Exit the loop if a non-digit or '*' is encountered */
             break;
         }
     }
 
-    // Update the index and return the calculated width
+    /* Update the index and return the calculated width */
     *i = curr_i - 1;
     return width;
 }

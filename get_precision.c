@@ -13,7 +13,7 @@ int get_precision(const char *format, int *i, va_list list)
     int curr_i = *i + 1;
     int precision = -1;
 
-    // Check if precision is specified with a dot '.'
+    /* Check if precision is specified with a dot '.' */
     if (format[curr_i] != '.')
     {
         return precision;
@@ -21,7 +21,7 @@ int get_precision(const char *format, int *i, va_list list)
 
     precision = 0;
 
-    // Process the precision specifier
+    /* Process the precision specifier */
     for (curr_i += 1; format[curr_i] != '\0'; curr_i++)
     {
         if (is_digit(format[curr_i]))
@@ -41,7 +41,7 @@ int get_precision(const char *format, int *i, va_list list)
         }
     }
 
-    // Update the index based on the precision specifier
+    /* Update the index based on the precision specifier */
     *i = curr_i - 1;
 
     return precision;
