@@ -14,7 +14,7 @@ int _putchar(char c);
 /**
  * struct frmat - Struct objct
  *
- * @fmt: The format.
+ * @frmat: The format.
  * @fn: The function associated.
  */
 struct frmat
@@ -45,7 +45,8 @@ typedef struct frmat frmatn;
  * _printf - my custom prints function
  *
  * @format: format.
- * Return - int
+ * Return: The number of characters printed (excluding null byte),
+ * or -1 if an error occurs.t
  */
 int _printf(const char *format, ...);
 int handle_print(const char *frmat, int *i,
@@ -104,8 +105,8 @@ int write_char_handler(char c, char buffer[],
 		int flags, int width, int precision, int size);
 int write_number_handler(int is_positive, int ind, char buffer[],
 		int flags, int width, int precision, int size);
-int write_number1_handler(int ind, char bff[], int flags, int width, int precision,
-		int length, char padd, char extra_c);
+int write_number1_handler(int ind, char bff[], int flags, int width,
+		int precision, int length, char padd, char extra_c);
 int write_pointer_handler(char buffer[], int ind, int length,
 		int width, int flags, char padd, char extra_c, int padd_start);
 int write_unsgnd_handler(int is_negative, int ind,

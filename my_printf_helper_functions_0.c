@@ -37,12 +37,11 @@ int print_int(va_list types, char buffer[],
 		buffer[i--] = (num % 10) + '0';
 		num /= 10;
 	}
-
 	i++;
 
-	return (write_number_handler(is_negative, i, buffer, flags, width, precision, size));
+	return (write_number_handler(is_negative, i,
+		buffer, flags, width, precision, size));
 }
-
 /**
  * str_print - Prints a string
  * @types: List of arguments
@@ -72,13 +71,10 @@ int str_print(va_list types, char buffer[],
 			str = " ";
 		}
 	}
-
 	while (str[length] != '\0')
 		length++;
-
 	if (precision >= 0 && precision < length)
 		length = precision;
-
 	if (width > length)
 	{
 		if (flags & FLAG_MINUS)
